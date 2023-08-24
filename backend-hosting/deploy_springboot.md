@@ -70,10 +70,49 @@
 ```
 
 
+### Create a SSL certficate using certbot (let's encrypt)
+```bash
+    # Install snap store 
+    sudo apt install snapd
 
+    # Update the snap packages
+    sudo snap install core; sudo snap refresh core
 
+    # Install certbox
+    sudo snap install --classic certbot
 
+    # Link
+    sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
+    # Stop the nginx server because if it occupies port:80
+    sudo systemctl stop nginx
+
+    # Install the certificate only 
+    # Pre-requisites: allow http requests on the vm
+    sudo certbot certonly --standalone -d backend.automovill.com
+
+    # Modify the /etc/nginx/sites-available/default
+    listen 443 ssl;
+    server_name _;  # Listen on any hostname (wildcard)
+
+    ssl_certificate /etc/letsencrypt/live/backend.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/backend.com/privkey.pem;
+
+    location / {
+            proxy_pass http://127.0.0.1:8080;  # Forward to Spring Boot
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+
+    }
+
+    # Remove the existing location / route, otherwise error will show up.
+
+    # restart the nginx server
+    sudo service nginx restart
+
+```
 
 
 
