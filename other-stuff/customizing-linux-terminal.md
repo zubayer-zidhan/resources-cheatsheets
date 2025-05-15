@@ -1,7 +1,3 @@
-
-
-
-
 ### Install and setup zsh
 
 ```bash
@@ -32,25 +28,28 @@
 
 #### 🔍 What Do the Keys Mean?
 
-Key	Meaning
-di	Directory
-ln	Symbolic link
-mh	Multi-hardlink
-pi	Named pipe (FIFO)
-so	Socket
-do	Door (mostly Solaris)
-bd	Block device
-cd	Character device
-or	Broken symlink
-su	Setuid executable
-sg	Setgid executable
-tw	Sticky and writable dir
-ow	Other writable dir (no sticky)
-st	Sticky dir (not writable)
-ex	Executable file
-*.ext	Specific file extensions
+```
+    Key	Meaning
+    di	Directory
+    ln	Symbolic link
+    mh	Multi-hardlink
+    pi	Named pipe (FIFO)
+    so	Socket
+    do	Door (mostly Solaris)
+    bd	Block device
+    cd	Character device
+    or	Broken symlink
+    su	Setuid executable
+    sg	Setgid executable
+    tw	Sticky and writable dir
+    ow	Other writable dir (no sticky)
+    st	Sticky dir (not writable)
+    ex	Executable file
+    *.ext	Specific file extensions
+```
 
 #### 🎨 ANSI Color Code Format
+
 The format is:
 
 ```css
